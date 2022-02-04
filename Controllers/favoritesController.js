@@ -14,27 +14,31 @@ const getAllFavorites = async (req, res) => {
 
 const addFavorite = async (req, res) => {
   try {
-    const filterById = {
-      productId: req.body.productId,
-      userId: req.body.userId,
-    };
-    const existingProduct = await favoriteModel.findOne(filterById);
-    if (existingProduct) {
-      await favoriteModel.findOneAndRemove(filterById);
-    } else {
-      await favoriteModel.insertMany(filterById, (err, result) => {
-        if (err) throw err;
-        res.json(result);
-      });
-    }
+    let filteredFavourite = { productId: req.body.productId,userId:req.body.userId };
+    await favoriteModel.insertMany(filteredFavourite, (err, result) => {
+      if (err) throw err;
+      res.json(result);
+    });
   } catch (e) {
     console.log(e);
   }
 };
 
+const deleteFavourite = async (req, res) => {
+  try {
+    let filteredFavourite = { productId: req.body.productId,userId:req.body.userId };
 
+    await favoriteModel.findOneAndRemove(filteredFavourite, (err, result) => {
+      if (err) throw err;
+      res.json(result);
+    });
+  } catch {
+    console.log("error");
+  }
+};
 
 module.exports = {
   getAllFavorites,
-  addFavorite
+  addFavorite,
+  deleteFavourite,
 };

@@ -4,5 +4,7 @@ const Controller = require("../Controllers/favoritesController");
 
 Router.get("/:userId",Controller.getAllFavorites);
 Router.post("/add-favorite",Controller.addFavorite);
+Router.delete("/delete-favorite",Controller.deleteFavourite);
+
 
 module.exports = Router;
