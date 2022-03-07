@@ -1,6 +1,7 @@
 const userModel = require("../Models/userModel");
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+
 async function getUsers(req, res) {
   try {
     await userModel.find({}, (err, result) => {
@@ -21,7 +22,7 @@ const registerUser = async (req, res) => {
           .status(500)
           .json({ message: { msgBody: "Error has occured", msgError: true } });
       }
-      if (email) {
+      if (user) {
         res.status(400).json({
           message: { msgBody: "User Email already taken", msgError: true },
         });
@@ -81,7 +82,6 @@ async function loginUser(req, res) {
         errors: { password: "wrong password" },
       });
     }
-    // delete user.password;
     const token = jwt.sign(user.toJSON(), "eliasadmaso", { expiresIn: "100d" });
     res.status(200).json({
       success: true,
