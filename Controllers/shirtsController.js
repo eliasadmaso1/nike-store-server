@@ -22,4 +22,18 @@ async function getShirts(req, res) {
     }
   }
 
-module.exports = {getShirts,postShirts}
+  async function updateShirt(req,res){
+    let filter = {_id:req.body.id}
+    let update = {sizes:req.body.sizes}
+    try{
+      await shirtsModel.updateOne(filter,update,(err,result)=>{
+        if(err) throw err;
+        res.json(result)
+      });
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
+
+module.exports = {getShirts,postShirts, updateShirt}

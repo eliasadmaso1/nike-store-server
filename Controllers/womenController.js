@@ -40,8 +40,23 @@ catch{
 }
 }
 
+async function updateWomenShoes(req,res){
+    let filter = {_id:req.body.id}
+    let update = {sizes:req.body.sizes}
+    try{
+      await womenShoesModel.updateOne(filter,update,(err,result)=>{
+        if(err) throw err;
+        res.json(result)
+      });
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
+
 module.exports = {
     getWomenShoes,
     postWomenShoes,
-    deleteWomenShoes
+    deleteWomenShoes,
+    updateWomenShoes
 }

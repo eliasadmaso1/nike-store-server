@@ -15,6 +15,10 @@ const cartSchema = new schema({
     required: true,
     default: 1,
   },
+  size: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("cart", cartSchema);

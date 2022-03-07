@@ -14,7 +14,7 @@ const getProductsInCart = async (req, res) => {
 
 const addProductToCart = async (req, res) => {
   try {
-    const filterById = { productId: req.body.productId ,userId: req.body.userId};
+    const filterById = { productId: req.body.productId ,userId: req.body.userId, size:req.body.size};
     const existingProduct = await cartModel.findOne(filterById);
     if (existingProduct) {
       const newQuantity = existingProduct.quantity + 1;

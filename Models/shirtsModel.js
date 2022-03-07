@@ -24,7 +24,12 @@ const shirtSchema = new schema({
     status:{
         type:String,
         required:true
+    },
+    sizes:{
+        type:Array,
+        required:true
     }
+
 });
 
 module.exports = mongoose.model("shirts",shirtSchema);

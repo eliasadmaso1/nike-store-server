@@ -22,7 +22,22 @@ async function postMenShoes(req, res) {
   }
 }
 
+async function updateShoe(req,res){
+  let filter = {_id:req.body.id}
+  let update = {sizes:req.body.sizes}
+  try{
+    await menShoesModel.updateOne(filter,update,(err,result)=>{
+      if(err) throw err;
+      res.json(result)
+    });
+  }
+  catch(e){
+    console.log(e);
+  }
+}
+
 module.exports = {
   getMenShoes,
   postMenShoes,
+  updateShoe
 };
