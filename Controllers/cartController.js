@@ -38,7 +38,7 @@ const addProductToCart = async (req, res) => {
 
 const deleteProductFromCart = async (req, res) => {
   try {
-    const filtered = { productId: req.body.productId,userId:req.body.userId };
+    const filtered = { productId: req.body.productId,userId:req.body.userId, size:req.body.size };
     await cartModel.findOneAndRemove(filtered, (err, result) => {
       if (err) throw err;
       res.json(result);
