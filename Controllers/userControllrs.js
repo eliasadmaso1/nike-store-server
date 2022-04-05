@@ -1,6 +1,6 @@
 const userModel = require("../Models/userModel");
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 async function getUsers(req, res) {
   try {
@@ -15,40 +15,45 @@ async function getUsers(req, res) {
 
 const registerUser = async (req, res) => {
   try {
-    const { email} = req.body;
+    const { email } = req.body;
     await userModel.findOne({ email: email }, (err, user) => {
       if (err) {
-        res
+        return res
           .status(500)
-          .json({ message: { msgBody: "Error has occured", msgError: true } });
+          .json({ success: false, message: "Error has occured" });
       }
       if (user) {
-        res.status(400).json({
-          message: { msgBody: "User Email already taken", msgError: true },
+        return res.status(200).json({
+          success: false,
+          message: "Email Alreay Exist!",
         });
       }
       bcrypt.genSalt(12, (err, salt) => {
         if (err) throw err;
         bcrypt.hash(req.body.password, salt, async (err, hash) => {
           if (err) throw err;
-          req.body.password = hash;
-
           const newUser = new userModel({
-            firstName:req.body.firstName,
-            lastName:req.body.lastName,
-            userName:req.body.userName,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            userName: req.body.userName,
             email: req.body.email,
-            password: req.body.password,
+            password: hash,
           });
           try {
             await newUser.save();
-            res.status(201).json({
+
+            const token = jwt.sign(newUser.toJSON(), "eliasadmaso", {
+              expiresIn: "100d",
+            });
+
+            return res.status(201).json({
               success: true,
               message: "add new user",
               data: newUser,
+              token,
             });
           } catch (err) {
-            res.status(400).json({
+            return res.status(400).json({
               success: false,
               message: "failed creating user",
               error: err.message,
