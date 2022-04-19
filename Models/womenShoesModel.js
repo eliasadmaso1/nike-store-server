@@ -22,7 +22,7 @@ const womenShoesSchema = new schema({
     },
     status:{
         type:String,
-        required:true
+        required:false
     },
     sizes:{
         type:Array,

@@ -18,7 +18,7 @@ async function getWomenShoes(req,res){
 async function postWomenShoes(req,res){
     try{
        
-        await womenShoesModel.insertMany( [req.body.shoe],(err,result)=>{
+        await womenShoesModel.insertMany( req.body,(err,result)=>{
             if (err) throw err;
             res.json(result);
         })
