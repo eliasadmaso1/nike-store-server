@@ -1,7 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
 const express = require("express");
-const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 8080;
 const cors = require("cors");
@@ -11,11 +10,12 @@ const db = require("./DB");
 const menRouter = require("./Routers/menRouter");
 const womenRouter = require("./Routers/womenRouter");
 const kidsRouter = require("./Routers/kidsRouter");
-const cartRouter = require("./Routers/cartRouter");
-const userRouter = require("./Routers/userRouter");
-const favoriteRouter = require("./Routers/favoriteRouter");
-const accessoriesRouter = require("./Routers/accessoriesRouter");
-const shirtsRouter = require("./Routers/shirtsRouter");
+const cartRouter = require("./Routers/cart");
+const userRouter = require("./Routers/user");
+const favoriteRouter = require("./Routers/favorite");
+const accessoriesRouter = require("./Routers/accessorie");
+const shirtsRouter = require("./Routers/shirt");
+const productRouter = require('./Routers/product');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -28,6 +28,7 @@ app.use("/users", userRouter);
 app.use("/favorites", favoriteRouter);
 app.use("/accessories", accessoriesRouter);
 app.use("/shirts", shirtsRouter);
+app.use('/products',productRouter);
 
 app.get("/", (req, res) => {
   res.send("Api Running");

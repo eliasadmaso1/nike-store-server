@@ -1,4 +1,4 @@
-const favoriteModel = require("../Models/favoriteModel");
+const favoriteModel = require("../Models/favorite");
 
 const getAllFavorites = async (req, res) => {
   const { userId } = req.params;

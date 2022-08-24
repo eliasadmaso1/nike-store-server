@@ -1,12 +1,8 @@
-require('dotenv').config();
 const mongoose = require("mongoose");
 
 
 
-
-
-
-mongoose.connect(process.env.CONNECTION_STRING,{
+mongoose.connect('mongodb+srv://eliasadmaso1:eliasad123@cluster0.zgbqg.mongodb.net/ProductsStore?retryWrites=true&w=majority',{
 useNewUrlParser:true,
 useUnifiedTopology:true
 })

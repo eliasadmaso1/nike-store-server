@@ -1,4 +1,4 @@
-const shirtsModel = require('../Models/shirtsModel');
+const shirtsModel = require('../Models/shirt');
 
 async function getShirts(req, res) {
     try {

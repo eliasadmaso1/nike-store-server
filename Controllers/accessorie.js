@@ -1,4 +1,4 @@
-const accessoriesModel = require('../Models/accessoriesModel');
+const accessoriesModel = require('../Models/accessorie');
 
 async function getAccessories(req, res) {
     try {
