@@ -33,7 +33,7 @@ app.use('/products',productRouter);
 app.use('/players',playerRouter);
 
 app.get("/", (req, res) => {
-  res.send("Api Running");
+  res.send("Api Running!");
 });
 
 
