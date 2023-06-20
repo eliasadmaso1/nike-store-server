@@ -16,7 +16,7 @@ const favoriteRouter = require("./Routers/favorite");
 const accessoriesRouter = require("./Routers/accessorie");
 const shirtsRouter = require("./Routers/shirt");
 const productRouter = require('./Routers/product');
-const playerRouter = require('./Routers/player');
+const jerseyRouter = require('./Routers/jersey');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -30,7 +30,7 @@ app.use("/favorites", favoriteRouter);
 app.use("/accessories", accessoriesRouter);
 app.use("/shirts", shirtsRouter);
 app.use('/products',productRouter);
-app.use('/players',playerRouter);
+app.use('/jerseys',jerseyRouter);
 
 app.get("/", (req, res) => {
   res.send("Api Running!");
